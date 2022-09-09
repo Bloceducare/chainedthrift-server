@@ -3,6 +3,9 @@ import { IUser } from "../../domain/entities/user";
 import { ICheckUserUsecase } from "../../domain/use-cases/interfaces/user/check-user-existence";
 import { ICreateUserUsecase } from "../../domain/use-cases/interfaces/user/create-user";
 import { IGetUserUsecase } from "../../domain/use-cases/interfaces/user/get-user";
+import { checkUser } from "../../domain/use-cases/user/check-user";
+import { createUser } from "../../domain/use-cases/user/create-user";
+import { getUser } from "../../domain/use-cases/user/get-user";
 
 const userRouter = (
     createUser: ICreateUserUsecase,
@@ -87,4 +90,6 @@ const userRouter = (
     return router;
 };
 
-export default userRouter;
+const userMiddleware = userRouter(createUser, getUser, checkUser);
+
+export default userMiddleware;

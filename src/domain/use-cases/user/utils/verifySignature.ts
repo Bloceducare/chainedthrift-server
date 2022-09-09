@@ -1,16 +1,15 @@
 import { utils } from "ethers";
-interface IverifySignatureParams {
+interface IVerifySignatureParams {
     signature: string;
     message: string;
     signerAddress: string;
 }
-export const verifySignature = (params: IverifySignatureParams): boolean => {
+export const verifySignature = (params: IVerifySignatureParams): boolean => {
     try {
         const { message, signature, signerAddress } = params;
         const signer = utils.verifyMessage(message, signature);
         return signer.toLowerCase() === signerAddress.toLowerCase();
     } catch (error) {
-        console.log(error);
         const err = {
             message: "Signature verification failed",
         };
@@ -18,20 +17,19 @@ export const verifySignature = (params: IverifySignatureParams): boolean => {
     }
 };
 
-interface IgetSignatureSignerParams {
+interface IGetSignatureSignerParams {
     signature: string;
     message: string;
 }
 
 export const getSignatureSigner = (
-    params: IgetSignatureSignerParams
+    params: IGetSignatureSignerParams
 ): string => {
     try {
         const { message, signature } = params;
         const signer = utils.verifyMessage(message, signature);
         return signer;
     } catch (error) {
-        console.log(error);
         const err = {
             message: "Signature verification failed",
         };
