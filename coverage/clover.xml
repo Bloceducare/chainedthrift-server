@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1662733758932" clover="3.2.0">
-  <project timestamp="1662733758932" name="All files">
-    <metrics statements="77" coveredstatements="73" conditionals="5" coveredconditionals="3" methods="14" coveredmethods="14" elements="96" coveredelements="90" complexity="0" loc="77" ncloc="77" packages="5" files="7" classes="7"/>
-    <package name="constants">
+<coverage generated="1662835186218" clover="3.2.0">
+  <project timestamp="1662835186218" name="All files">
+    <metrics statements="120" coveredstatements="113" conditionals="10" coveredconditionals="8" methods="21" coveredmethods="21" elements="151" coveredelements="142" complexity="0" loc="120" ncloc="120" packages="7" files="9" classes="9"/>
+    <package name="src">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="app.ts" path="/Users/sir_adek/dev/chainedthrift-server/src/app.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.constants">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="signature-messages.ts" path="/Users/sir_adek/dev/chainedthrift-server/src/constants/signature-messages.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -10,7 +20,7 @@
         <line num="4" count="2" type="stmt"/>
       </file>
     </package>
-    <package name="domain.use-cases.user">
+    <package name="src.domain.use-cases.user">
       <metrics statements="40" coveredstatements="38" conditionals="5" coveredconditionals="3" methods="6" coveredmethods="6"/>
       <file name="check-user.ts" path="/Users/sir_adek/dev/chainedthrift-server/src/domain/use-cases/user/check-user.ts">
         <metrics statements="12" coveredstatements="12" conditionals="3" coveredconditionals="2" methods="2" coveredmethods="2"/>
@@ -62,7 +72,7 @@
         <line num="41" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="domain.use-cases.user.utils">
+    <package name="src.domain.use-cases.user.utils">
       <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
       <file name="verifySignature.ts" path="/Users/sir_adek/dev/chainedthrift-server/src/domain/use-cases/user/utils/verifySignature.ts">
         <metrics statements="15" coveredstatements="15" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
@@ -83,7 +93,7 @@
         <line num="36" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="infrastructure.data-sources.mongodb">
+    <package name="src.infrastructure.data-sources.mongodb">
       <metrics statements="12" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="mongodb-user-data-source.ts" path="/Users/sir_adek/dev/chainedthrift-server/src/infrastructure/data-sources/mongodb/mongodb-user-data-source.ts">
         <metrics statements="12" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
@@ -101,7 +111,7 @@
         <line num="32" count="1" type="stmt"/>
       </file>
     </package>
-    <package name="infrastructure.repositories">
+    <package name="src.infrastructure.repositories">
       <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
       <file name="user-repository.ts" path="/Users/sir_adek/dev/chainedthrift-server/src/infrastructure/repositories/user-repository.ts">
         <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
@@ -113,6 +123,51 @@
         <line num="19" count="1" type="stmt"/>
         <line num="20" count="1" type="stmt"/>
         <line num="24" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.presentation.routers">
+      <metrics statements="39" coveredstatements="36" conditionals="5" coveredconditionals="5" methods="7" coveredmethods="7"/>
+      <file name="user-router.ts" path="/Users/sir_adek/dev/chainedthrift-server/src/presentation/routers/user-router.ts">
+        <metrics statements="39" coveredstatements="36" conditionals="5" coveredconditionals="5" methods="7" coveredmethods="7"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="45" count="2" type="stmt"/>
+        <line num="47" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="72" count="3" type="stmt"/>
+        <line num="73" count="3" type="stmt"/>
+        <line num="74" count="3" type="stmt"/>
+        <line num="76" count="3" type="cond" truecount="3" falsecount="0"/>
+        <line num="77" count="2" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="84" count="1" type="stmt"/>
+        <line num="86" count="0" type="stmt"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
+        <line num="96" count="1" type="stmt"/>
       </file>
     </package>
   </project>

@@ -72,6 +72,7 @@ const userRouter = (
         ) => {
             try {
                 const { signature, userData } = req.body;
+
                 if (!signature || !userData) {
                     const err = {
                         message: "signature and user data required",

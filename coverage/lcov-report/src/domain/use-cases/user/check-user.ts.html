@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for domain/use-cases/user/utils/verifySignature.ts</title>
+    <title>Code coverage report for src/domain/use-cases/user/check-user.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">domain/use-cases/user/utils</a> verifySignature.ts</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/domain/use-cases/user</a> check-user.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/17</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
@@ -90,29 +90,9 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -120,63 +100,50 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { utils } from "ethers";
-interface IVerifySignatureParams {
-    signature: string;
-    message: string;
-    signerAddress: string;
-}
-export const verifySignature = (params: IVerifySignatureParams): boolean =&gt; {
-    try {
-        const { message, signature, signerAddress } = params;
-        const signer = utils.verifyMessage(message, signature);
-        return signer.toLowerCase() === signerAddress.toLowerCase();
-    } catch (error) {
-        const err = {
-            message: "Signature verification failed",
-        };
-        throw err;
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ICheckUserUsecase } from "../interfaces/user/check-user-existence";
+import { IUserRepository } from "../../interfaces/repositories/user-repository";
+import { userRepositoryImpl } from "../../../infrastructure/repositories/user-repository";
+export class CheckUser implements ICheckUserUsecase {
+    userRepository: IUserRepository;
+    constructor(userRepository: IUserRepository) {
+        this.userRepository = userRepository;
     }
-};
 &nbsp;
-interface IGetSignatureSignerParams {
-    signature: string;
-    message: string;
+    async execute(walletAddress: string): Promise&lt;{ exist: boolean }&gt; {
+        try {
+            const match = /^0x[a-fA-F0-9]{40}$/.test(walletAddress);
+            if (!match) {
+                const err = {
+                    message: "invalid wallet address",
+                };
+                throw err;
+            }
+            const user = await this.userRepository.getUser({ walletAddress });
+            return user ? { exist: true } : <span class="branch-1 cbranch-no" title="branch not covered" >{ exist: false };</span>
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 &nbsp;
-export const getSignatureSigner = (
-    params: IGetSignatureSignerParams
-): string =&gt; {
-    try {
-        const { message, signature } = params;
-        const signer = utils.verifyMessage(message, signature);
-        return signer;
-    } catch (error) {
-        const err = {
-            message: "Signature verification failed",
-        };
-        throw err;
-    }
-};
+export const checkUser = new CheckUser(userRepositoryImpl);
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -184,7 +151,7 @@ export const getSignatureSigner = (
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-09-10T16:00:13.340Z
+                at 2022-09-10T18:39:46.207Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
