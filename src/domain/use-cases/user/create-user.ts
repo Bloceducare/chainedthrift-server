@@ -1,4 +1,5 @@
 import { account_creation_messsage } from "../../../constants/signature-messages";
+import { userRepositoryImpl } from "../../../infrastructure/repositories/user-repository";
 import { IUser } from "../../entities/user";
 import { IUserRepository } from "../../interfaces/repositories/user-repository";
 import { ICreateUserUsecase } from "../interfaces/user/create-user";
@@ -28,9 +29,16 @@ export class CreateUser implements ICreateUserUsecase {
                 throw err;
             }
             const result = await this.userRepository.createUser(user);
-            return result;
+            return {
+                id: result._id,
+                walletAddress: result.walletAddress,
+                email: result.email,
+                username: result.username,
+            };
         } catch (error) {
             throw error;
         }
     }
 }
+
+export const createUser = new CreateUser(userRepositoryImpl);

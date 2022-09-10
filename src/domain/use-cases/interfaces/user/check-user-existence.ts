@@ -1,3 +1,3 @@
 export interface ICheckUserUsecase {
-    execute(walletAddress: string): Promise<boolean>;
+    execute(walletAddress: string): Promise<{ exist: boolean }>;
 }
