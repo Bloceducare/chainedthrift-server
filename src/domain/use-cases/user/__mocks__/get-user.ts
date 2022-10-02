@@ -1,7 +1,7 @@
 import { IUser } from "../../../entities/user";
 
 export const getUser = {
-    execute: async (signature: string): Promise<IUser> => {
+    execute: async (signature: string, message: string): Promise<IUser> => {
         try {
             return {
                 id: "6310c2f459e35550c2df3e97",

@@ -1,4 +1,3 @@
-import { account_creation_messsage } from "../../../constants/signature-messages";
 import { userRepositoryImpl } from "../../../infrastructure/repositories/user-repository";
 import { IUser } from "../../entities/user";
 import { IUserRepository } from "../../interfaces/repositories/user-repository";
@@ -11,13 +10,17 @@ export class CreateUser implements ICreateUserUsecase {
         this.userRepository = userRepository;
     }
 
-    async execute(signature: string, user: IUser): Promise<IUser> {
+    async execute(
+        signature: string,
+        message: string,
+        user: IUser
+    ): Promise<IUser> {
         // verify the signature to retrieve the signaer's wallet address
         // compare the wallet address against the wallet address in the user object, if they tally, proceed to create the user, otherwise, throw an error
         try {
             const isVerified = verifySignature({
                 signature,
-                message: account_creation_messsage,
+                message,
                 signerAddress: user.walletAddress,
             });
 
