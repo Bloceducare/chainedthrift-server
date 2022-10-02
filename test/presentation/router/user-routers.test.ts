@@ -50,7 +50,8 @@ describe("user router", () => {
                     .get("/api/user/get-user")
                     .send({
                         signature:
-                            "0xb8ca25fcbc7edfc79fda3aebb624f91d4b232f261b1e8e3ae87aac6c0e612be462e24bfd5a790b2a6cade471b6731630eb4dae69b039ea75a0489d8136a97a6d1b",
+                            "0xcbb179ac3c21d727753b906909f7750517ad95ea86a82b3a6a0fab95201a313b787dce8b11fed6ce65d1d4da3d7a4807843b02de37862096225695c1f5e55d031c",
+                        message: "signin",
                     })
                     .expect(200, expectedUserObject);
             }));
@@ -89,7 +90,8 @@ describe("user router", () => {
         describe("given that userData and signature is sent", () => {
             it("should return created user object with status code of 200", async () => {
                 const signatureInput =
-                    "0xadf82d8732e3fe03fa7c2031493066150628b09e463af14d33f66b88d8d021b26a1ac0488945c1396246df27009523ec92f2a04b54fa71629303dcbfa6e1995e1c";
+                    "0xd424a02189ecb17e53b9866a7a56299c9dcbf533728ab51d61aac6391c4b57322ed53bd96fac0f5d9ec2d701daef2a800865ab8a9da736786260a1fc111db38d1c";
+                const messageInput = "signup";
                 const userDataInput = {
                     walletAddress: "0xd5E4484326EB3Dd5FBbd5Def6d02aFE817fD4684",
                     email: "test123@gmail.com",
@@ -105,6 +107,7 @@ describe("user router", () => {
                     .post("/api/user/create-user")
                     .send({
                         signature: signatureInput,
+                        message: messageInput,
                         userData: userDataInput,
                     })
                     .expect(200, expectedCreatedUserOutput);
