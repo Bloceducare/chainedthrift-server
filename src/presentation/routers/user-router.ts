@@ -21,16 +21,17 @@ const userRouter = (
             res: Response,
             next: NextFunction
         ) => {
-            const { signature, message } = req.body;
-            if (!signature || !message) {
+            const { signature, message, address } = req.body;
+            if (!signature || !message || !address) {
                 const err = {
-                    message: "signature and message are required",
+                    message:
+                        "signature, message and signer address are required",
                     status: 401,
                 };
                 return next(err);
             }
             try {
-                const user = await getUser.execute(signature, message);
+                const user = await getUser.execute(signature, message, address);
                 res.status(200).json(user);
             } catch (error) {
                 next(error);

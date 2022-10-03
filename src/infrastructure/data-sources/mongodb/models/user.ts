@@ -6,7 +6,7 @@ const userSchema = new Schema<IUser>({
         type: String,
         required: [true, "can't be blank"],
         unique: true,
-        match: [/^0x[a-fA-F0-9]{40}$/, "invalid wallet address"],
+        match: [/^0x[a-f0-9]{40}$/, "invalid wallet address"],
     },
     email: {
         type: String,

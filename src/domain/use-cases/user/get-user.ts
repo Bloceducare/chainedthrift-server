@@ -1,7 +1,7 @@
 import { IGetUserUsecase } from "../interfaces/user/get-user";
 import { IUserRepository } from "../../interfaces/repositories/user-repository";
 import { IUser } from "../../entities/user";
-import { getSignatureSigner } from "./utils/verifySignature";
+import { verifySignature } from "./utils/verifySignature";
 import { userRepositoryImpl } from "../../../infrastructure/repositories/user-repository";
 export class GetUser implements IGetUserUsecase {
     userRepository: IUserRepository;
@@ -9,14 +9,26 @@ export class GetUser implements IGetUserUsecase {
         this.userRepository = userRepository;
     }
 
-    async execute(signature: string, message: string): Promise<IUser> {
+    async execute(
+        signature: string,
+        message: string,
+        address: string
+    ): Promise<IUser> {
         try {
-            const signer = getSignatureSigner({
-                message,
+            const isVerified = verifySignature({
                 signature,
+                message,
+                signerAddress: address,
             });
+            if (!isVerified) {
+                const err = {
+                    message: "Signature and signer do not match",
+                    status: 401,
+                };
+                throw err;
+            }
             const user = await this.userRepository.getUser({
-                walletAddress: signer,
+                walletAddress: address.toLocaleLowerCase(),
             });
             if (!user) {
                 const err = {
