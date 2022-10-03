@@ -14,7 +14,7 @@ const userRouter = (
 ) => {
     const router = express.Router();
     // create a controller file and import them and use here to keep this file clean
-    router.get(
+    router.post(
         "/get-user",
         async (
             req: Request<{}, { signature: string; message: string }>,

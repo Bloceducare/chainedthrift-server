@@ -35,7 +35,7 @@ describe("user router", () => {
     describe("get user", () => {
         describe("given that signature is not sent along with the request", () =>
             it("should return error 401", async () => {
-                await request(app).get("/api/user/get-user").expect(401);
+                await request(app).post("/api/user/get-user").expect(401);
             }));
 
         describe("given that signature is sent along with the request", () =>
@@ -47,7 +47,7 @@ describe("user router", () => {
                     username: "testuser",
                 };
                 await request(app)
-                    .get("/api/user/get-user")
+                    .post("/api/user/get-user")
                     .send({
                         signature:
                             "0xcbb179ac3c21d727753b906909f7750517ad95ea86a82b3a6a0fab95201a313b787dce8b11fed6ce65d1d4da3d7a4807843b02de37862096225695c1f5e55d031c",
