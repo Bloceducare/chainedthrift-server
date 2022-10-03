@@ -14,6 +14,7 @@ describe("get user usecase", () => {
             }
         });
     });
+
     describe("given that the signature is correct", () => {
         it("should return a user", async () => {
             const signatureInput =
