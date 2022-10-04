@@ -30,7 +30,6 @@ import userMiddleware from "./presentation/routers/user-router";
             ) => {
                 res.status(error.status || 500).json({
                     error: {
-                        status: error.status || 500,
                         message: error.message || "an unknown error occured",
                     },
                 });
