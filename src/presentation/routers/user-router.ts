@@ -14,20 +14,24 @@ const userRouter = (
 ) => {
     const router = express.Router();
     // create a controller file and import them and use here to keep this file clean
-    router.get(
+    router.post(
         "/get-user",
         async (
-            req: Request<{}, { signature: string }>,
+            req: Request<{}, { signature: string; message: string }>,
             res: Response,
             next: NextFunction
         ) => {
-            const { signature } = req.body;
-            if (!signature) {
-                const err = { message: "signature is required", status: 401 };
+            const { signature, message, address } = req.body;
+            if (!signature || !message || !address) {
+                const err = {
+                    message:
+                        "signature, message and signer address are required",
+                    status: 401,
+                };
                 return next(err);
             }
             try {
-                const user = await getUser.execute(signature);
+                const user = await getUser.execute(signature, message, address);
                 res.status(200).json(user);
             } catch (error) {
                 next(error);
@@ -65,22 +69,30 @@ const userRouter = (
         async (
             req: Request<
                 {},
-                { signature: string; userData: Omit<IUser, "id"> }
+                {
+                    signature: string;
+                    message: string;
+                    userData: Omit<IUser, "id">;
+                }
             >,
             res: Response,
             next: NextFunction
         ) => {
             try {
-                const { signature, userData } = req.body;
+                const { signature, message, userData } = req.body;
 
-                if (!signature || !userData) {
+                if (!signature || !message || !userData) {
                     const err = {
-                        message: "signature and user data required",
+                        message: "signature, message and user data required!",
                         status: 401,
                     };
                     return next(err);
                 }
-                const user = await createUser.execute(signature, userData);
+                const user = await createUser.execute(
+                    signature,
+                    message,
+                    userData
+                );
                 res.status(200).json(user);
             } catch (error) {
                 next(error);

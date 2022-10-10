@@ -21,8 +21,8 @@ describe("check user", () => {
             const expectedOutput = {
                 exist: true,
             };
-            const user = await checkUser.execute(walletAddress);
-            expect(user).toStrictEqual(expectedOutput);
+            const result = await checkUser.execute(walletAddress);
+            expect(result).toStrictEqual(expectedOutput);
         });
     });
 });
