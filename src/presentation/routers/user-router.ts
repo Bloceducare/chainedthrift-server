@@ -17,7 +17,11 @@ const userRouter = (
     router.post(
         "/get-user",
         async (
-            req: Request<{}, { signature: string; message: string }>,
+            req: Request<
+                {},
+                {},
+                { signature: string; message: string; address: string }
+            >,
             res: Response,
             next: NextFunction
         ) => {
@@ -68,6 +72,7 @@ const userRouter = (
         "/create-user",
         async (
             req: Request<
+                {},
                 {},
                 {
                     signature: string;

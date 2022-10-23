@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 import { MONGODB_URI, PORT } from "./config/environments";
 import userMiddleware from "./presentation/routers/user-router";
+import calenderEventMiddleware from "./presentation/routers/calender-event-router";
 
 (async () => {
     try {
@@ -11,6 +12,7 @@ import userMiddleware from "./presentation/routers/user-router";
 
         // user routes
         app.use("/api/user", userMiddleware);
+        app.use("/api/google-calender", calenderEventMiddleware);
 
         // when a request reaches here, its because the route is not found
         app.use((req, res, next) => {
