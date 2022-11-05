@@ -45,6 +45,7 @@ describe("user router", () => {
                     walletAddress: "0xd5E4484326EB3Dd5FBbd5Def6d02aFE817fD4684",
                     email: "test123@gmail.com",
                     username: "testuser",
+                    token: "token",
                 };
                 await request(app)
                     .post("/api/user/get-user")
@@ -103,6 +104,7 @@ describe("user router", () => {
                     walletAddress: "0xd5E4484326EB3Dd5FBbd5Def6d02aFE817fD4684",
                     email: "test123@gmail.com",
                     username: "testuser",
+                    token: "token",
                 };
                 await request(app)
                     .post("/api/user/create-user")

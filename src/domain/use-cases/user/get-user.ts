@@ -3,6 +3,7 @@ import { IUserRepository } from "../../interfaces/repositories/user-repository";
 import { IUser } from "../../entities/user";
 import { verifySignature } from "./utils/verifySignature";
 import { userRepositoryImpl } from "../../../infrastructure/repositories/user-repository";
+import { generateToken } from "./utils/token";
 export class GetUser implements IGetUserUsecase {
     userRepository: IUserRepository;
     constructor(userRepository: IUserRepository) {
@@ -13,7 +14,7 @@ export class GetUser implements IGetUserUsecase {
         signature: string,
         message: string,
         address: string
-    ): Promise<IUser> {
+    ): Promise<IUser & { token: string }> {
         try {
             const isVerified = verifySignature({
                 signature,
@@ -37,11 +38,14 @@ export class GetUser implements IGetUserUsecase {
                 };
                 throw err;
             }
+            const token = generateToken(user.walletAddress);
+
             return {
                 id: user._id,
                 walletAddress: user.walletAddress,
                 email: user.email,
                 username: user.username,
+                token,
             };
         } catch (error) {
             throw error;

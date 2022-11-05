@@ -5,10 +5,10 @@ export const createUser = {
         signature: string,
         message: string,
         user: IUser
-    ): Promise<IUser> => {
+    ): Promise<IUser & { token: string }> => {
         try {
             // .........
-            return { ...user, id: "6310c2f459e35550c2df3e97" };
+            return { ...user, id: "6310c2f459e35550c2df3e97", token: "token" };
         } catch (error) {
             throw error;
         }

@@ -1,5 +1,6 @@
 import { getUser } from "../../../../src/domain/use-cases/user/get-user";
 jest.mock("../../../../src/infrastructure/repositories/user-repository");
+jest.mock("../../../../src/domain/use-cases/user/utils/token");
 describe("get user usecase", () => {
     describe("given that the signature is invalid/malformed", () => {
         it("should throw Signature verification failed error", async () => {
@@ -27,6 +28,7 @@ describe("get user usecase", () => {
                 walletAddress: "0xd5E4484326EB3Dd5FBbd5Def6d02aFE817fD4684",
                 email: "test123@gmail.com",
                 username: "testuser",
+                token: "token",
             };
             const user = await getUser.execute(
                 signatureInput,

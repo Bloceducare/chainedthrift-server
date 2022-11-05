@@ -1,18 +1,10 @@
 const jwt = require("jsonwebtoken");
 import { JWT_SECRET } from "../../../../config/environments";
 
-export const generateToken = (userAddress: string) => {
-    return jwt.sign(userAddress, JWT_SECRET, { expiresIn: "7d" });
+export const generateToken = (userAddress: string): string => {
+    return jwt.sign({ userAddress }, JWT_SECRET, { expiresIn: "7d" }) as string;
 };
 
-export const verifyToken = (token: string) => {
-    jwt.verify(token, JWT_SECRET, (err: any, decoded: any) => {
-        if (err || !decoded) {
-            const error = {
-                message: "Invalid toke",
-            };
-            throw error;
-        }
-        return decoded;
-    });
+export const verifyToken = (token: string): any => {
+    return jwt.verify(token, JWT_SECRET);
 };

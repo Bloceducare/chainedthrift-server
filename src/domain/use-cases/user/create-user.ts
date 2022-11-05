@@ -6,6 +6,7 @@ import { userRepositoryImpl } from "../../../infrastructure/repositories/user-re
 import { IUser } from "../../entities/user";
 import { IUserRepository } from "../../interfaces/repositories/user-repository";
 import { ICreateUserUsecase } from "../interfaces/user/create-user";
+import { generateToken } from "./utils/token";
 import { verifySignature } from "./utils/verifySignature";
 
 export class CreateUser implements ICreateUserUsecase {
@@ -18,7 +19,7 @@ export class CreateUser implements ICreateUserUsecase {
         signature: string,
         message: string,
         user: IUser
-    ): Promise<IUser> {
+    ): Promise<IUser & { token: string }> {
         // verify the signature to retrieve the signaer's wallet address
         // compare the wallet address against the wallet address in the user object, if they tally, proceed to create the user, otherwise, throw an error
         try {
@@ -39,11 +40,13 @@ export class CreateUser implements ICreateUserUsecase {
                 ...user,
                 walletAddress: user.walletAddress.toLowerCase(),
             });
+            const token = generateToken(user.walletAddress);
             return {
                 id: result._id,
                 walletAddress: result.walletAddress,
                 email: result.email,
                 username: result.username,
+                token,
             };
         } catch (error: any) {
             if (error.name === "ValidationError") {
