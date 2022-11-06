@@ -3,6 +3,7 @@ import app from "../../../src/app";
 import userMiddleware from "../../../src/presentation/routers/user-router";
 jest.mock("../../../src/domain/use-cases/user/check-user");
 jest.mock("../../../src/domain/use-cases/user/get-user");
+jest.mock("../../../src/domain/use-cases/user/get-user-with-token");
 jest.mock("../../../src/domain/use-cases/user/create-user");
 
 describe("user router", () => {
@@ -45,6 +46,7 @@ describe("user router", () => {
                     walletAddress: "0xd5E4484326EB3Dd5FBbd5Def6d02aFE817fD4684",
                     email: "test123@gmail.com",
                     username: "testuser",
+                    token: "token",
                 };
                 await request(app)
                     .post("/api/user/get-user")
@@ -56,6 +58,32 @@ describe("user router", () => {
                     })
                     .expect(200, expectedUserObject);
             }));
+    });
+
+    describe("get user with token", () => {
+        describe("given that token is not sent along", () => {
+            it("its should return error 401", async () => {
+                await request(app)
+                    .post("/api/user/get-user-with-token")
+                    .expect(401);
+            });
+        });
+        // describe("given that a valid token is sent along", () => {
+        //     it("should return user object", async () => {
+        //         const expectedUserObject = {
+        //             id: "6310c2f459e35550c2df3e97",
+        //             walletAddress: "0xd5E4484326EB3Dd5FBbd5Def6d02aFE817fD4684",
+        //             email: "test123@gmail.com",
+        //             username: "testuser",
+        //         };
+        //         await request(app)
+        //             .post("/api/user/get-user-with-token")
+        //             .send({
+        //                 token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyQWRkcmVzcyI6IjB4ZDVlNDQ4NDMyNmViM2RkNWZiYmQ1ZGVmNmQwMmFmZTgxN2ZkNDY4NCIsImlhdCI6MTY2Nzc2MDM4NCwiZXhwIjoxNjY4MzY1MTg0fQ.OGl42VhUV30yhWfbg4I2pKUL1x5olMPFnYki8aeD_mo",
+        //             })
+        //             .expect(200, expectedUserObject);
+        //     });
+        // });
     });
 
     describe("create user", () => {
@@ -103,6 +131,7 @@ describe("user router", () => {
                     walletAddress: "0xd5E4484326EB3Dd5FBbd5Def6d02aFE817fD4684",
                     email: "test123@gmail.com",
                     username: "testuser",
+                    token: "token",
                 };
                 await request(app)
                     .post("/api/user/create-user")

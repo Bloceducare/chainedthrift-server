@@ -3,21 +3,27 @@ import { IUser } from "../../domain/entities/user";
 import { ICheckUserUsecase } from "../../domain/use-cases/interfaces/user/check-user-existence";
 import { ICreateUserUsecase } from "../../domain/use-cases/interfaces/user/create-user";
 import { IGetUserUsecase } from "../../domain/use-cases/interfaces/user/get-user";
+import { IGetUserWithTokenUsecase } from "../../domain/use-cases/interfaces/user/get-user-with-token";
 import { checkUser } from "../../domain/use-cases/user/check-user";
 import { createUser } from "../../domain/use-cases/user/create-user";
 import { getUser } from "../../domain/use-cases/user/get-user";
+import { getUserWithToken } from "../../domain/use-cases/user/get-user-with-token";
 
 const userRouter = (
     createUser: ICreateUserUsecase,
     getUser: IGetUserUsecase,
+    getUserWithToken: IGetUserWithTokenUsecase,
     checkUser: ICheckUserUsecase
 ) => {
     const router = express.Router();
-    // create a controller file and import them and use here to keep this file clean
     router.post(
         "/get-user",
         async (
-            req: Request<{}, { signature: string; message: string }>,
+            req: Request<
+                {},
+                {},
+                { signature: string; message: string; address: string }
+            >,
             res: Response,
             next: NextFunction
         ) => {
@@ -34,6 +40,32 @@ const userRouter = (
                 const user = await getUser.execute(signature, message, address);
                 res.status(200).json(user);
             } catch (error) {
+                next(error);
+            }
+        }
+    );
+
+    router.post(
+        "/get-user-with-token",
+        async (
+            req: Request<{}, {}, { token: string }>,
+            res: Response,
+            next: NextFunction
+        ) => {
+            const { token } = req.body;
+            if (!token) {
+                const err = {
+                    message: "token is required!",
+                    status: 401,
+                };
+                return next(err);
+            }
+            try {
+                const user = await getUserWithToken.execute(token);
+                res.status(200).json(user);
+            } catch (error) {
+                console.log("error: ", error);
+
                 next(error);
             }
         }
@@ -69,6 +101,7 @@ const userRouter = (
         async (
             req: Request<
                 {},
+                {},
                 {
                     signature: string;
                     message: string;
@@ -103,6 +136,11 @@ const userRouter = (
     return router;
 };
 
-const userMiddleware = userRouter(createUser, getUser, checkUser);
+const userMiddleware = userRouter(
+    createUser,
+    getUser,
+    getUserWithToken,
+    checkUser
+);
 
 export default userMiddleware;

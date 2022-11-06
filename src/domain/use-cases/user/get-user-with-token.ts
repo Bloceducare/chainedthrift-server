@@ -1,35 +1,27 @@
-import { IGetUserUsecase } from "../interfaces/user/get-user";
 import { IUserRepository } from "../../interfaces/repositories/user-repository";
 import { IUser } from "../../entities/user";
-import { verifySignature } from "./utils/verifySignature";
 import { userRepositoryImpl } from "../../../infrastructure/repositories/user-repository";
-import { generateToken } from "./utils/token";
-export class GetUser implements IGetUserUsecase {
+import { verifyToken } from "./utils/token";
+import { IGetUserWithTokenUsecase } from "../interfaces/user/get-user-with-token";
+
+export class GetUserWithToken implements IGetUserWithTokenUsecase {
     userRepository: IUserRepository;
     constructor(userRepository: IUserRepository) {
         this.userRepository = userRepository;
     }
 
-    async execute(
-        signature: string,
-        message: string,
-        address: string
-    ): Promise<IUser & { token: string }> {
+    async execute(userToken: string): Promise<IUser> {
         try {
-            const isVerified = verifySignature({
-                signature,
-                message,
-                signerAddress: address,
-            });
-            if (!isVerified) {
+            const tokenData = verifyToken(userToken);
+            if (!tokenData?.userAddress) {
                 const err = {
-                    message: "Signature and signer do not match",
+                    message: "invalid token",
                     status: 401,
                 };
                 throw err;
             }
             const user = await this.userRepository.getUser({
-                walletAddress: address.toLocaleLowerCase(),
+                walletAddress: tokenData.userAddress.toLocaleLowerCase(),
             });
             if (!user) {
                 const err = {
@@ -38,19 +30,26 @@ export class GetUser implements IGetUserUsecase {
                 };
                 throw err;
             }
-            const token = generateToken(user.walletAddress);
 
             return {
                 id: user._id,
                 walletAddress: user.walletAddress,
                 email: user.email,
                 username: user.username,
-                token,
             };
-        } catch (error) {
+        } catch (error: any) {
+            if (
+                ["TokenExpiredError", "JsonWebTokenError"].includes(error.name)
+            ) {
+                const err = {
+                    status: 401,
+                    message: error.message,
+                };
+                throw err;
+            }
             throw error;
         }
     }
 }
 
-export const getUser = new GetUser(userRepositoryImpl);
+export const getUserWithToken = new GetUserWithToken(userRepositoryImpl);

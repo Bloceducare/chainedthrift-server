@@ -5,5 +5,5 @@ export interface IGetUserUsecase {
         signature: string,
         message: string,
         address: string
-    ): Promise<IUser>;
+    ): Promise<IUser & { token: string }>;
 }
