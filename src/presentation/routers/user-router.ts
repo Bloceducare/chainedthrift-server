@@ -64,6 +64,8 @@ const userRouter = (
                 const user = await getUserWithToken.execute(token);
                 res.status(200).json(user);
             } catch (error) {
+                console.log("error: ", error);
+
                 next(error);
             }
         }
