@@ -5,7 +5,10 @@
     "main": "index.js",
     "scripts": {
         "test": "jest --watchAll --collectCoverage",
-        "dev": "nodemon -e ts -w src src/index.ts"
+        "dev": "nodemon -e ts -w src src/index.ts",
+        "build": "tsc",
+        "start": "node build/index.js",
+        "postinstall": "npm run build"
     },
     "keywords": [],
     "author": "",
