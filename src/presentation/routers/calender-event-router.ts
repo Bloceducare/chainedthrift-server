@@ -68,9 +68,8 @@ const calenderEventRouter = (addCalenderEvent: IAddCalenderEvent) => {
             timestamps.forEach((timeStamp: number, index: number) => {
                 events[index] = {
                     colorId: "1",
-                    summary: `Thrift round at chainedthrift - round ${
-                        index + 1
-                    }`,
+                    summary: `Thrift round at chainedthrift - round ${index + 1
+                        }`,
                     description: description,
                     location: "https://chainedthrift.com",
                     start: {
@@ -108,7 +107,7 @@ const calenderEventRouter = (addCalenderEvent: IAddCalenderEvent) => {
             const added = await addCalenderEvent.execute(events, Oauth2Client);
             if (!added) {
                 return res.status(500).json({
-                    message: "somethingg went wrong! cannot event",
+                    message: "somethings went wrong! cannot event",
                 });
             }
 
