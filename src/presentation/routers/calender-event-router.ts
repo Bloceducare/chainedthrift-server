@@ -8,6 +8,7 @@ import {
 } from "../../config/environments";
 import { addCalenderEvent } from "../../domain/use-cases/calender-event/add-event";
 import { IAddCalenderEvent } from "../../domain/use-cases/interfaces/calender-event/add-event";
+console.log(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET)
 
 const calenderEventRouter = (addCalenderEvent: IAddCalenderEvent) => {
     const router = express.Router();
@@ -105,6 +106,8 @@ const calenderEventRouter = (addCalenderEvent: IAddCalenderEvent) => {
             Oauth2Client.setCredentials({ access_token: tokens.access_token });
 
             const added = await addCalenderEvent.execute(events, Oauth2Client);
+            console.log("added", added)
+            console.log("tokens", tokens)
             if (!added) {
                 return res.status(500).json({
                     message: "somethings went wrong! cannot event",
