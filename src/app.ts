@@ -6,6 +6,7 @@ const corsOption = {
     optionsSuccessStatus: 200
 };
 const app = express();
+
 app.use(cors(
     {
         origin: 'https://chainedthrift.finance',
