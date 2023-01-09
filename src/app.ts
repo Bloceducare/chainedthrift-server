@@ -8,7 +8,7 @@ const corsOption = {
 const app = express();
 app.use(cors(
     {
-        origin: 'https://chainedthrift.finance/',
+        origin: 'https://chainedthrift.finance',
         credentials: true,
         methods: 'POST',
         optionsSuccessStatus: 200,
