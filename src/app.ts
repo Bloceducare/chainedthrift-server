@@ -9,7 +9,7 @@ const app = express();
 
 app.use(cors(
     {
-        origin: 'https://chainedthrift.finance',
+        origin: 'http://localhost:3000',
         credentials: true,
         methods: 'POST',
         optionsSuccessStatus: 200,
