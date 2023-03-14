@@ -7,14 +7,14 @@ const corsOption = {
 };
 const app = express();
 
-app.use(cors(
-    {
-        origin: 'http://localhost:3000',
-        credentials: true,
-        methods: 'POST',
-        optionsSuccessStatus: 200,
-    }
-));
+// app.use(cors(
+//     {
+//         origin: 'http://localhost:3000',
+//         credentials: true,
+//         methods: 'POST',
+//         optionsSuccessStatus: 200,
+//     }
+// ));
 app.use(express.json());
 
 export default app;
